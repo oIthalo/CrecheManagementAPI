@@ -17,7 +17,11 @@ public class RegisterUserCommandValidator : AbstractValidator<RegisterUserComman
             .When(x => !string.IsNullOrEmpty(x.Email));
 
         RuleFor(x => x.Password)
-            .NotNull().NotEmpty().WithMessage(ReturnMessages.PASSWORD_REQUIRED)
-            .MinimumLength(8).MaximumLength(24).WithMessage(ReturnMessages.PASSWORD_LENGTH);
+            .NotNull().NotEmpty().WithMessage(ReturnMessages.PASSWORD_REQUIRED);
+
+        RuleFor(x => x.Password)
+            .MinimumLength(8).MaximumLength(24).WithMessage(ReturnMessages.PASSWORD_LENGTH)
+            .When(x => !string.IsNullOrEmpty(x.Password));
+
     }
 }
