@@ -42,7 +42,9 @@ public class ClassroomsRepository : IClassroomsRepository
 
     public async Task UpsertAsync(Classroom classroom)
     {
-        var filter = Builders<Classroom>.Filter.Eq(c => c.CrecheIdentifier, classroom.CrecheIdentifier);
+        var filter = Builders<Classroom>.Filter.And(
+            Builders<Classroom>.Filter.Eq(c => c.Identifier, classroom.Identifier),
+            Builders<Classroom>.Filter.Eq(c => c.CrecheIdentifier, classroom.CrecheIdentifier));
         await _mongo.Classrooms.ReplaceOneAsync(filter, classroom, new ReplaceOptions { IsUpsert = true });
     }
 
