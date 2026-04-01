@@ -4,6 +4,7 @@ public record StudentResponse
 {
     public string Identifier { get; init; }
     public string? Classroom { get; init; }
+    public string? ClassroomIdentifier { get; init; }
     public string Name { get; init; }
     public string CPF { get; init; }
     public string? ContactNumber { get; init; }
